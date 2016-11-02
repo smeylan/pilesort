@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+	    <title> Polysemy Project </title>
+        <!-- <script src="http://cdn.jsdelivr.net/interact.js/1.2.6/interact.min.js"></script> -->
+        <!-- <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery&#45;1.11.1.min.js"></script> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>        
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+        <script src="https://cdn.firebase.com/js/client/2.4.0/firebase.js"></script>
+        <script src="polysemy_pilesort.js" type='text/javascript'></script>
+        <meta charset="utf-8">
+    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        
+        <style>        
+            body {
+                padding-top: 30px;
+                text-align: center;
+            }
+
+            .btn-info {
+                white-space: normal;
+            }
+
+            /* .my-btn { */
+            /*     @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border); */
+            /*     @include button-variant(blue, black, blue); */
+            /* } */
+            .btn-group {
+                text-align: center;
+            }
+            
+            /* .col-centered{ */
+            /*     float: none; */
+            /*     margin: 0 auto; */
+            /* } */
+
+            
+            .warning{
+                color: red;
+            }
+
+            .start-centered{
+                position:absolute;
+                left:100px;
+                width: 800px;
+            }
+            
+            /* @media (max-width: 760px) { */
+            /*     .btn-responsive { */
+            /*         padding:2px 4px; */
+            /*         font-size:50%; */
+            /*         line-height: 1; */
+            /*     } */
+            /* } */
+            
+
+            #dropzone{
+                 
+                 /* margin: auto; */
+
+                 height: 400px;
+
+                 background-color: #ccc;
+                 border: 4px transparent;
+                 border-radius: 6px;
+                 margin: 10px auto 30px;
+                 /* margin: 0px; */
+                 padding: 10px;
+            }
+
+            .relevantSentence{
+                 height:120px;
+
+
+                 border: 4px transparent;
+                 border-radius: 6px;
+                 margin: 10px auto 10px;
+                 padding: 10px;
+                 background-color: #ccc;  
+            }
+
+            #info{
+                 height:150px;
+            }
+
+            .draggable {
+                border: 3px;
+                border-radius: 4px;
+                border-style: solid;
+                border-color: red;
+                /* padding-bottom:25px; */
+
+                overflow: hidden; 
+                width: 38px; 
+                height: 38px; 
+
+                position: absolute;
+                /* left: 200px; */
+                top: 300px;
+
+                z-index: 2;
+            }
+
+            h4{
+                padding: 0px;
+            }
+
+            
+        </style>
+	</head>
+
+
+	<body>
+    <div class="container-fluid">
+        <div id="consent" style="text-align:left">
+            <h4>1. Consent to Participate</h4>
+            This research is being conducted by Professor Thomas Griffiths, a faculty member at the University of California at Berkeley. Professor Griffiths' lab investigates computational models of human cognition. The study typically takes about 12 minutes.
+            <br /><br />
+            If you agree to take part in the research, you will drag and arrange a group of sentences according to the similarity of their meanings. You will receive $.75 for your participation at the end of the session. All of the information that we obtain during the research will be kept confidential, and will not associated with your name in any way.
+            <br /><br />
+            Your participation in this research is voluntary. You are free to refuse to take part, and you may stop taking part at any time. You are free to discontinue participation in this study at any time with no penalty. If you have any questions about the research, do not hesitate to contact Stephan Meylan at <a href="mailto:smeylan@berkeley.edu">smeylan@berkeley.edu</a>. You may also contact us through Amazon Mechanical Turk. If you have any questions about your rights or treatment as a participant in this research project, please contact UC Berkeley\'s Committee for Protection of Human Subjects at (510) 642-7461 or <a href="mailto:subjects@berkeley.edu">subjects@berkeley.edu</a>.
+            <br /><br />
+            By selecting the 'Agree to Participate' button below, I acknowledge that I am 18 or older, have read this consent form, and I agree to take part in the research.
+            <br /><br />
+            <h4>2. System Requirement</h4>
+            <br /><br />
+            Please note that this HIT requires Javascript, and that your computer must be connected to the internet throughout the HIT. Please maximize the browser size for best results.
+            <br /><br />
+            
+            <input id="agree" class="btn btn-info btn-responsive" style="color:black;text-align:center" type="button" value="Agree to Participate" />
+            <input id="decline" class="btn btn-info btn-responsive" style="color:black;text-align:center" type="button" value="Choose not to Participate"/>
+            
+        </div>
+
+        <div id="experiment" class="hidden">
+        <div id='header'>
+            <p id='info' class="bg-info center-block lead start-centered">
+            this displays the info and instructions of the experiment</p>
+            <p class='warning hidden'>this paragraph displays warning/reminders</p>
+        </div>
+
+        <!-- <div id="buttons" style="margin:20px"> -->
+        <!-- <div id="buttons" class="start&#45;centered" style="position:absolute;top:370"> -->
+            <!-- <div class="btn&#45;group btn&#45;group&#45;lg start&#45;centered" style="width:150px;position:absolute;top:200ox"><input class="btn btn&#45;info disabled" id="next" style="color:black" type="button" value="New Sentence" /></div> -->
+            <div class="start-centered" style="width:200px;position:absolute;top:210px"><input class="btn btn-info disabled" id="next" style="color:black" type="button" value="New Sentence" /></div>            
+            <div class="start-centered" style="width:200px;position:absolute;top:210px"><input class="btn btn-info disabled hidden" id="submit" style="color:black" type="button" value="Submit" /></div>
+        <!-- </div> -->
+
+        
+        <!-- <div id="rainbow"> -->
+            <div id="dropzone" class="dropzone droppable start-centered" style="background-color: #ccc; top:250px">   </div>
+            <ul id="sentences" class="ui-helper-reset ui-helper-clearfix">
+            </ul>
+        <!-- </div> -->
+
+            <div id="label" class="relevantSentence start-centered" style="top:670px">
+            <h4 id="label-text">No sentence selected</h4>
+            </div> 
+
+            <div id="hover" class="relevantSentence start-centered" style="top:800px">
+                <h4 id="hover-text">Move your cursor close to a number to see the corresponding sentence.</h4>
+            </div>
+        </div>
+
+        <div id="finishedExperiment" class="hidden">
+            <div class='bg-info center-block lead'>
+             <p>
+                    Thank you for participating in the Polysemy experiment! Here is your survey code for Amazon Mechanical Turk:               
+            </p>
+            <p id="AMTcode"></p>
+            </div>
+        </div>
+
+        <div id="declinedExperiment" class="hidden">
+            <div class='bg-info center-block lead'>
+             <p>
+            Please use the survey code: 00000000 to return the HIT on Amazon Mechanical Turk, and exit this window. Thank you!      
+            </p>
+        </div>
+        </div>
+
+        <div id="userExists" class="hidden">
+            <div class='bg-info center-block lead'>
+             <p>
+             This user has already participated in the experiment--please do not participate twice!
+            Please use the survey code: 11111111 to return the HIT on Amazon Mechanical Turk, and exit this window. Thank you!      
+            </p>
+        </div>
+        </div>
+
+	</body>
+
+</html> 
+
