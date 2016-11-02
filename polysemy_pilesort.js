@@ -26,7 +26,7 @@ var sentenceIndex = 0;
 var wordList = ["cell", "figure", "foot", "form", "girl", "home", "paper", "table"];
 var stimuli; //stimuli objects associated with current word
 var sentenceKeys = []; //randomized list of sentence keys for current word
-var trialSize = 11; //max number of sentences in each trial
+var trialSize = 5; //max number of sentences in each trial
 var colorlist = ["#C4E17F", "#DB9DBE", "#FECF71", "#F0776C", "#F7FDCA", "#669AE1", "#C49CDE", "#62C2E4"];
 var lastClicked;
 
