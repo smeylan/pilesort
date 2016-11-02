@@ -1,0 +1,50 @@
+<!-- For help on using this template, see the blog post: http://mechanicalturk.typepad.com/blog/2014/04/editing-the-survey-link-project-template-in-the-ui.html --><!-- Bootstrap v3.0.3 -->
+<link href="https://s3.amazonaws.com/mturk-public/bs30/css/bootstrap.min.css" rel="stylesheet" />
+<section class="container" id="SurveyLink" style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
+<div class="row col-xs-12 col-md-12"><!-- Instructions -->
+<div class="panel panel-primary">
+<div class="panel-heading"><strong>Instructions</strong></div>
+
+<div class="panel-body">
+<p>This survey asks you to group sentences together based on the similarity of a word meaning in them. Select the link below to complete the survey. At the end of the survey, you will receive a code to paste into the box below to receive credit for taking our survey.</p>
+
+<p><strong>Make sure to leave this window open as you complete the survey. </strong>When you are finished, you will return to this page to paste the code into the box.</p>
+</div>
+</div>
+<!-- End Instruction -->
+
+<table>
+	<tbody>
+		<tr>
+			<td><strong>Survey link:</strong></td>
+			<td><a href="http://www.google.com" id="explink" target="_blank">experiment site</a></td>
+		</tr>
+		<tr>
+			<td><strong>Provide the survey code here:</strong></td>
+			<td style="vertical-align: middle;"><input class="form-control" id="surveycode" name="surveycode" placeholder="e.g. 123456" type="text" /></td>
+		</tr>
+	</tbody>
+</table>
+</div>
+</section>
+<!-- close container section -->
+<style type="text/css">td { font-size:1.0em; padding:5px 5px; }
+</style>
+<script type="text/javascript">
+function getParamFromURL( name ){
+	name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+	var regexS = "[\\?&]"+name+"=([^&#]*)";
+	var regex = new RegExp( regexS );
+	var results = regex.exec( window.location.href );
+	if( results == null )
+		return "";
+	else
+		return results[1];
+}
+( function(){
+    var explink = document.getElementById("explink");
+    explink.href = "http://cocosci.dreamhosters.com/webexpt/polysemy/polysemy_pilesort/polysemy_pilesort.html"+"?workerID="+getParamFromURL("workerId");
+    //console.log( getParamFromURL("workerId") );
+
+})();
+</script>
