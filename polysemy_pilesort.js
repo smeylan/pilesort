@@ -251,11 +251,12 @@ function getSubjectInfo(){
     var lati;
     var longi;
 
-    $.get("http://getcitydetails.geobytes.com/GetCityDetails", function(response) {
-        country = response.geobytescountry;
-        userIP = response.geobytesipaddress;
-        lati = response.geobyteslatitude;
-        longi =  response.geobyteslongitude;
+    $.get("https://wordful-flask.herokuapp.com/ip", function(response) {
+        country = response.country_code;
+        userIP = response.ip;
+        lati = response.latitude;
+        longi =  response.longitude;
+        city = response.city;
 
         IPkey = userIP.toString().split(".").join("_");
         IDkey = workerID.toString();
@@ -265,7 +266,7 @@ function getSubjectInfo(){
         //if (IPkey!=null ) {
             getLocation.resolve();
         }
-    }, "jsonp")
+    }, "json")
 
     
 
@@ -284,6 +285,7 @@ function getSubjectInfo(){
                     userCountry: country,
                     latitude: lati,
                     longitude: longi,
+                    city: city,
                     //condition: stimuliIndices,
                     condition:wordList
                     };
