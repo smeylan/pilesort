@@ -111,9 +111,17 @@ function newTrial() {
         }
     })
 
+    
+
     //load the sentences
     //var loadSentences = $.Deferred();
     getStimuli.done(function() {
+        //load instruction keywords
+    $("#info").html('You will see a total of ' +sentenceKeys.length+ ' sentences that includes the word <b>' 
+        +wordList[currentIndex-1]+'</b>. Each sentence is represented by a numbered square in the grey canvas below. \
+        Drag the squares around in the canvas, such that sentences with similar meanings for "' 
+        +wordList[currentIndex-1]+ '" are grouped closer together.')
+
         dropOneSentence();
         //loadChoices();
         //if ($("#rainbow > div").length - 1 == sentenceKeys.length) {loadSentences.resolve();}
