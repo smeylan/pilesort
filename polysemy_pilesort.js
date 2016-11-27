@@ -167,7 +167,7 @@ function dropOneSentence(){
         //$(this).css("border-style", "dashed");
         //$("#hover-text" ).text(stimuli[this.id]["sentence"]);
         if((lastClicked != this.id) ) {
-            $("#hover-text" ).text(stimuli[this.id]);
+            $("#hover-text" ).html(stimuli[this.id]);
             $("#hover").css("background-color", $(this).css("background-color"));
             $(this).css("border-style", "dashed");
         }
@@ -183,7 +183,7 @@ function dropOneSentence(){
         //$("#label-text" ).text(stimuli[this.id]["sentence"]);
         lastClicked = this.id;
 
-        $("#label-text" ).text(stimuli[this.id]);
+        $("#label-text" ).html(stimuli[this.id]);
 
         $("#label").css("background-color", $(this).css("background-color"));
         $(this).css("border-style", "dashed");
