@@ -23,7 +23,13 @@ var sentenceIndex = 0;
 //var stimuliIndices = shuffle(sorted);
 //var wordSpace = ["chicken", "shower"]; //list of possible words, in alphabetical order
 //var wordList = shuffle(wordSpace).slice(0,totalTrials); //list of stimuli words for this participant
-var wordList = ["cell", "figure", "foot", "form", "girl", "home", "paper", "table"];
+//var wordList = ["cell", "figure", "foot", "form", "girl", "home", "paper", "table"];
+var wordList = ['throw', 'draw', 'heavy', 'function', 'right', 'strong', 'paper',
+       'light', 'order', 'softly', 'raw', 'investigator', 'match', 'bar',
+       'rude', 'poor', 'tap', 'check', 'flat', 'special', 'put', 'clear',
+       'work', 'solid', 'fresh', 'charge', 'figure', 'execution', 'dry',
+       'post', 'hard', 'stiff', 'field', 'argument', 'important',
+       'different', 'interest', 'win', 'ask', 'add'];
 var stimuli; //stimuli objects associated with current word
 var sentenceKeys = []; //randomized list of sentence keys for current word
 var trialSize = 5; //max number of sentences in each trial
