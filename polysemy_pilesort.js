@@ -157,7 +157,7 @@ function dropOneSentence(){
 
     $( ".draggable" ).draggable({revert:"invalid"});
     //$("#label-text" ).text(stimuli[sentenceKeys[sentenceIndex].toString()]["sentence"]);
-    $("#label-text" ).text(stimuli[sentenceKeys[sentenceIndex].toString()]);    
+    $("#label-text" ).html(stimuli[sentenceKeys[sentenceIndex].toString()]);    
     $("#label").css("background-color", colorstr);
 
     $( ".draggable" ).mouseover(function() {
