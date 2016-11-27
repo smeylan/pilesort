@@ -32,7 +32,7 @@ var wordList = ['throw', 'draw', 'heavy', 'function', 'right', 'strong', 'paper'
        'different', 'interest', 'win', 'ask', 'add'];
 var stimuli; //stimuli objects associated with current word
 var sentenceKeys = []; //randomized list of sentence keys for current word
-var trialSize = 5; //max number of sentences in each trial
+var trialSize = 10; //max number of sentences in each trial
 var colorlist = ["#C4E17F", "#DB9DBE", "#FECF71", "#F0776C", "#F7FDCA", "#669AE1", "#C49CDE", "#62C2E4"];
 var lastClicked;
 
@@ -92,6 +92,15 @@ $(document).ready ( function(){
  *************************************/
 //main trial function; each trial corresponds to one word
 function newTrial() {
+    // var w = window.innerWidth;
+    // var h = window.innerHeight;
+    // if(w>915 && h>550){
+    //     $("#warning").addClass("hidden");
+    // } else{
+    //     $("#warning").removeClass("hidden");
+    //     $("#warning").html("<p style='color:black'>please only work on this experiment on a computer, and make sure your browser window is large enough to accomondate the canvas.</p>");
+    // }
+
     currentIndex += 1;
 
     //clear out old sentences
@@ -123,10 +132,10 @@ function newTrial() {
     //var loadSentences = $.Deferred();
     getStimuli.done(function() {
         //load instruction keywords
-    $("#info").html('You will see a total of ' +sentenceKeys.length+ ' sentences that includes the word <b>' 
-        +wordList[currentIndex-1]+'</b>. Each sentence is represented by a numbered square in the grey canvas below. \
-        Drag the squares around in the canvas, such that sentences with similar meanings for "' 
-        +wordList[currentIndex-1]+ '" are grouped closer together.')
+    $("#info").html('<b>Instructions: </b>You will see a total of ' +sentenceKeys.length+ ' sentences that includes the word <b style="background-color:yellow">' 
+        +wordList[currentIndex-1]+'</b>. Each sentence is represented by a numbered square in the grey canvas below. Drag the squares around in the canvas, such that sentences with similar meanings for "' 
+        +wordList[currentIndex-1]+ '" are grouped closer together. Scroll down to see sentence reminders below the canvas. '
+        + '<p style="text-decoration:underline">Please do not refresh this page until the experiment is finished, and make sure your browser window is large enough to accommodate the canvas.</p>')
 
         dropOneSentence();
         //loadChoices();
@@ -291,8 +300,8 @@ function getSubjectInfo(){
     getLocation.done(function() {
         var checkUser = $.Deferred();
         //TODO: put back user check.
-        checkIfUserExists(IPkey, IDkey, checkUser);
-        //checkUser.resolve();
+        //checkIfUserExists(IPkey, IDkey, checkUser);
+        checkUser.resolve();
         
 
         var jsonData = {userDisplayLanguage: navigator.language,
@@ -481,7 +490,7 @@ function sList(inputSize, trialSize) {
     var rlist = shuffle(range(1,inputSize));
     rlist = rlist.slice(0, sSize);
     for (var i = 0; i < sSize; i++) {
-        var entry = "s".concat(String(rlist[i]));
+        var entry = "s".concat(String(rlist[i]-1));
         slist[i] = entry; 
     }
     return slist;
