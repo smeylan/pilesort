@@ -244,10 +244,13 @@ function getPositions() {
     var positionsJSON = new Object();
     for (var i=0; i<sentenceKeys.length; i++) {
         var itemStr = $("#"+sentenceKeys[i])[0].outerHTML;
-        var startIndex = itemStr.indexOf("solid") + 6;
-        var endIndex = itemStr.indexOf('border', startIndex);
-        var posString = itemStr.substring(startIndex, endIndex);
-        positionsJSON[sentenceKeys[i]] = posString;
+        var startL = itemStr.indexOf("left");
+        var endL = itemStr.indexOf(';', startL);
+        var LString = itemStr.substring(startL, endL);
+        var startT = itemStr.indexOf("top");
+        var endT = itemStr.indexOf(';', startT);
+        var TString = itemStr.substring(startT, endT);
+        positionsJSON[sentenceKeys[i]] = LString +';'+ TString;
     }
     return positionsJSON
 }
@@ -288,8 +291,8 @@ function getSubjectInfo(){
     getLocation.done(function() {
         var checkUser = $.Deferred();
         //TODO: put back user check.
-        //checkIfUserExists(IPkey, IDkey, checkUser);
-        checkUser.resolve();
+        checkIfUserExists(IPkey, IDkey, checkUser);
+        //checkUser.resolve();
         
 
         var jsonData = {userDisplayLanguage: navigator.language,
