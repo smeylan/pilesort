@@ -103,6 +103,7 @@ function newTrial() {
     // }
 
     currentIndex += 1;
+    $('#trialnum').text('Trial '+currentIndex.toString()+'/'+totalTrials.toString());
 
     //clear out old sentences
     $("#sentences").empty();
@@ -133,10 +134,10 @@ function newTrial() {
     //var loadSentences = $.Deferred();
     getStimuli.done(function() {
         //load instruction keywords
-    $("#info").html('<b>Instructions: </b>You will see a total of ' +sentenceKeys.length+ ' sentences that includes the word <b style="background-color:yellow">' 
+    $("#info").html('<b>Instructions: </b>In this trial, you will see a total of ' +sentenceKeys.length+ ' sentences that includes the word <b style="background-color:yellow">' 
         +wordList[currentIndex-1]+'</b>. Each sentence is represented by a numbered square in the grey canvas below. Drag the squares around in the canvas, such that sentences with similar meanings for "' 
         +wordList[currentIndex-1]+ '" are grouped closer together. Scroll down to see sentence reminders below the canvas. '
-        + '<p style="text-decoration:underline">Please do not refresh this page until the experiment is finished, and make sure your browser window is large enough to accommodate the canvas.</p>')
+        + '<p style="text-decoration:underline">Please do not refresh this page until the experiment is finished, make sure your browser window is large enough to accommodate the canvas, and turn off Privacy Badger extension to allow us to save your answers.</p>')
 
         dropOneSentence();
         //loadChoices();
