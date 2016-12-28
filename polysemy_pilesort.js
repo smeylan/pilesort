@@ -2,6 +2,7 @@
    firebase references
  *************************************/
 var ref = new Firebase("https://brilliant-heat-3296.firebaseio.com/polysemy_pilesort");
+//var ref = firebase.database().ref().child("polysemy_pilesort");
 var userRef = ref.child("subjectInfo");
 var IPuserRef = ref.child("subjectByIP");
 var workerIDuserRef = ref.child("subjectByWorkerID");
@@ -33,7 +34,7 @@ var totalWordList = ['throw', 'draw', 'heavy', 'function', 'right', 'strong', 'p
 var wordList = shuffle(totalWordList).slice(0,totalTrials);
 var stimuli; //stimuli objects associated with current word
 var sentenceKeys = []; //randomized list of sentence keys for current word
-var trialSize = 10; //max number of sentences in each trial
+var trialSize = 2; //max number of sentences in each trial
 var colorlist = ["#C4E17F", "#DB9DBE", "#FECF71", "#F0776C", "#F7FDCA", "#669AE1", "#C49CDE", "#62C2E4"];
 var lastClicked;
 
@@ -78,6 +79,7 @@ $(document).ready ( function(){
         if(currentIndex <= totalTrials-1){
             newTrial();
         } else {
+            thisUserRef.update({ completed: 1 });
             $("#experiment").addClass("hidden");
             $("#finishedExperiment").removeClass("hidden");
             return;
@@ -315,7 +317,8 @@ function getSubjectInfo(){
                     longitude: longi,
                     city: city,
                     //condition: stimuliIndices,
-                    condition:wordList
+                    condition:wordList,
+                    completed:0
                     };
 
         
@@ -341,7 +344,7 @@ function getSubjectInfo(){
                 Raven.setUserContext({
                     id: userID
                 })
-                console.log(userID)
+                //console.log(userID)
 
             })
             //workerIDuserRef.set(IDkey:jsonData);
