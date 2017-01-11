@@ -34,7 +34,7 @@ var totalWordList = ['throw', 'draw', 'heavy', 'function', 'right', 'strong', 'p
 var wordList = shuffle(totalWordList).slice(0,totalTrials);
 var stimuli; //stimuli objects associated with current word
 var sentenceKeys = []; //randomized list of sentence keys for current word
-var trialSize = 2; //max number of sentences in each trial
+var trialSize = 10; //max number of sentences in each trial
 var colorlist = ["#C4E17F", "#DB9DBE", "#FECF71", "#F0776C", "#F7FDCA", "#669AE1", "#C49CDE", "#62C2E4"];
 var lastClicked;
 
