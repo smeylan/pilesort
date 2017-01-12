@@ -17,7 +17,7 @@ var userExists;
 /*************************************
    input variables
  *************************************/
-var totalTrials = 2;
+var totalTrials = 6;
 var currentIndex = 0; //index of current trial. will start indexing at 1, once newTrial() is called.
 var sentenceIndex = 0;
 //var sorted = range(1, totalTrials); //int list starting at 1, with length=totalTrials
@@ -25,16 +25,11 @@ var sentenceIndex = 0;
 //var wordSpace = ["chicken", "shower"]; //list of possible words, in alphabetical order
 //var wordList = shuffle(wordSpace).slice(0,totalTrials); //list of stimuli words for this participant
 //var wordList = ["cell", "figure", "foot", "form", "girl", "home", "paper", "table"];
-var totalWordList = ['throw', 'draw', 'heavy', 'function', 'right', 'strong', 'paper',
-       'light', 'order', 'softly', 'raw', 'investigator', 'match', 'bar',
-       'rude', 'poor', 'tap', 'check', 'flat', 'special', 'put', 'clear',
-       'work', 'solid', 'fresh', 'charge', 'figure', 'execution', 'dry',
-       'post', 'hard', 'stiff', 'field', 'argument', 'important',
-       'different', 'interest', 'win', 'ask', 'add'];
+var totalWordList = ['case','church','family','feet','question','time'] 
 var wordList = shuffle(totalWordList).slice(0,totalTrials);
 var stimuli; //stimuli objects associated with current word
 var sentenceKeys = []; //randomized list of sentence keys for current word
-var trialSize = 10; //max number of sentences in each trial
+var trialSize = 12; //max number of sentences in each trial
 var colorlist = ["#C4E17F", "#DB9DBE", "#FECF71", "#F0776C", "#F7FDCA", "#669AE1", "#C49CDE", "#62C2E4"];
 var lastClicked;
 
@@ -136,9 +131,9 @@ function newTrial() {
     //var loadSentences = $.Deferred();
     getStimuli.done(function() {
         //load instruction keywords
-    $("#info").html('<b>Instructions: </b>In this trial, you will see a total of ' +sentenceKeys.length+ ' sentences that include the word <b style="background-color:yellow">' 
+    $("#info").html('<b>Instructions: </b>You will see a total of ' +sentenceKeys.length+ ' sentences that include the word <b style="background-color:yellow">' 
         +wordList[currentIndex-1]+'</b>. Each sentence is represented by a numbered square in the grey canvas below. Drag the squares around in the canvas, such that sentences with similar meanings for "' 
-        +wordList[currentIndex-1]+ '" are grouped closer together. Scroll down to see sentence reminders below the canvas. '
+        +wordList[currentIndex-1]+ '" are grouped closer together. The full content of each sentence will be displayed below the canvas. '
         + '<p style="text-decoration:underline">Please do not refresh this page until the experiment is finished, make sure your browser window is large enough to accommodate the canvas, and turn off Privacy Badger extension to allow us to save your answers.</p>')
 
         dropOneSentence();
