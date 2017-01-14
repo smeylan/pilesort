@@ -152,6 +152,9 @@ function newTrial() {
 //drag-drop run for one sentence
 function dropOneSentence(){
     $("#next").addClass("disabled");
+    $("#warning").removeClass("hidden");
+    //$("#alttxt").removeClass("disabled");
+    //$("#next").html('');
     var colorstr = colorlist[sentenceIndex%8];
     var newDivString = ' <div class="draggable" id="';
     var newDiv0 = newDivString.concat (sentenceKeys[sentenceIndex].toString());
@@ -363,6 +366,9 @@ $(function() {
          }
          if (sentenceIndex < sentenceKeys.length-1) {
             $("#next").removeClass("disabled");
+            $("#warning").addClass("hidden");
+            //$("#next").html('<div id="alttxt" title="Move the current sentence to proceed" style="position:absolute; left:0; right:0; top:0; bottom:0;"></div>');
+            //$("#alttxt").addClass("disabled");
          }
       }
     });
