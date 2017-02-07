@@ -152,15 +152,19 @@ function newTrial() {
 //drag-drop run for one sentence
 function dropOneSentence(){
     $("#next").addClass("disabled");
-    $("#nextdiv").html('<input class="btn btn-info disabled" id="next" style="color:black" type="button" value="New Sentence" /><div id="block" style="position:absolute; left:0; right:0; top:0; bottom:0; zIndex:4"></div>');
-    $("#block").hover(function(){
+    $("#nextdiv").html('<input class="btn btn-info disabled" id="next" style="color:black" type="button" value="New Sentence" /><div id="block" style="position:absolute; left:0; right:0; top:0; bottom:0; zIndex:5"></div>');
+    $("#overlay").hover(function(){
             $("#warning").removeClass("hidden");
     }, function(){
             $("#warning").addClass("hidden");
     })
-    //$("#warning").removeClass("hidden");
-    //$("#alttxt").removeClass("disabled");
-    //$("#next").html('');
+    // $("#next").hover(function(){
+    //         $("#warning").removeClass("hidden");
+    //         $("#next").addClass("disabled");
+    // }, function(){
+    //         $("#warning").addClass("hidden");
+    //         $("#next").removeClass("disabled");
+    // })
     var colorstr = colorlist[sentenceIndex%8];
     var newDivString = ' <div class="draggable" id="';
     var newDiv0 = newDivString.concat (sentenceKeys[sentenceIndex].toString());
@@ -372,7 +376,7 @@ $(function() {
             $("#submit").removeClass("disabled hidden");
          }
          if (sentenceIndex < sentenceKeys.length-1) {
-            $("#nextdiv").html('<input class="btn btn-info" id="next" style="color:black" type="button" value="New Sentence" />');
+            $("#nextdiv").html('<input class="btn btn-info" id="next" style="color:black;zIndex=6" type="button" value="New Sentence" />');
             //$("#next").removeClass("disabled");
              
 

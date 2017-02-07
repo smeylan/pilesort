@@ -6,18 +6,7 @@
         <!-- <script src="http://cdn.jsdelivr.net/interact.js/1.2.6/interact.min.js"></script> -->
         <!-- <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery&#45;1.11.1.min.js"></script> -->
         
-        <!-- <script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script> -->
-        <!-- <script> -->
-        <!--   // Initialize Firebase -->
-        <!--   var config = { -->
-        <!--     apiKey: "AIzaSyBZlrlVLYmUQ4R1Or440KsNZnexegtOKPk", -->
-        <!--     authDomain: "brilliant&#45;heat&#45;3296.firebaseapp.com", -->
-        <!--     databaseURL: "https://brilliant&#45;heat&#45;3296.firebaseio.com", -->
-        <!--     storageBucket: "brilliant&#45;heat&#45;3296.appspot.com", -->
-        <!--     messagingSenderId: "269634635331" -->
-        <!--   }; -->
-        <!--   firebase.initializeApp(config); -->
-        <!-- </script> -->
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>        
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
         <script src="https://cdn.firebase.com/js/client/2.4.0/firebase.js"></script>
@@ -131,27 +120,9 @@
 
 	<body>
     <div class="container-fluid">
-        <div id="consent" style="text-align:left">
-            <h4>1. Consent to Participate</h4>
-            This research is being conducted by Professor Thomas Griffiths, a faculty member at the University of California at Berkeley. Professor Griffiths' lab investigates computational models of human cognition. The study typically takes about 12 minutes.
-            <br /><br />
-            If you agree to take part in the research, you will drag and arrange a group of sentences according to the similarity of their meanings. You will receive $.75 for your participation at the end of the session. All of the information that we obtain during the research will be kept confidential, and will not associated with your name in any way.
-            <br /><br />
-            Your participation in this research is voluntary. You are free to refuse to take part, and you may stop taking part at any time. You are free to discontinue participation in this study at any time with no penalty. If you have any questions about the research, do not hesitate to contact Stephan Meylan at <a href="mailto:smeylan@berkeley.edu">smeylan@berkeley.edu</a>. You may also contact us through Amazon Mechanical Turk. If you have any questions about your rights or treatment as a participant in this research project, please contact UC Berkeley\'s Committee for Protection of Human Subjects at (510) 642-7461 or <a href="mailto:subjects@berkeley.edu">subjects@berkeley.edu</a>.
-            <br /><br />
-            By selecting the 'Agree to Participate' button below, I acknowledge that I am 18 or older, have read this consent form, and I agree to take part in the research.
-            <br /><br />
-            <h4>2. System Requirement</h4>
-            <br /><br />
-            Please note that this HIT requires Javascript, and that your computer must be connected to the internet throughout the HIT. Please maximize the browser size for best results.
-            <br /><br />
-            
-            <input id="agree" class="btn btn-info btn-responsive" style="color:black;text-align:center" type="button" value="Agree to Participate" />
-            <input id="decline" class="btn btn-info btn-responsive" style="color:black;text-align:center" type="button" value="Choose not to Participate"/>
-            
-        </div>
 
-        <div id="experiment" class="hidden">
+
+        <div id="experiment" >
         <div id='header'>
             <p id='info' class="bg-info center-block lead start-centered" style="font-size:120%; text-align:left">
             You will see a total of n sentences that include the word w. Each sentence is represented by a numbered square in the grey canvas below. Drag the squares around in the canvas, such that sentences with similar meanings for w are grouped closer together. Scroll down to see sentence reminders below the canvas.
@@ -216,4 +187,5 @@
 	</body>
 
 </html> 
+
 
