@@ -151,6 +151,10 @@ function newTrial() {
 
 //drag-drop run for one sentence
 function dropOneSentence(){
+    if(sentenceIndex==0){
+        $("#warning").removeClass('hidden');
+    }
+
     $("#next").addClass("disabled");
     var colorstr = colorlist[sentenceIndex%8];
     var newDivString = ' <div class="draggable" id="';
@@ -229,6 +233,8 @@ function dropOneSentence(){
         $(this).css("z-index", 2);
 
         lastClicked = 0;
+
+        $("#warning").addClass('hidden');
         
     });
 }
