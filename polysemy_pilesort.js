@@ -124,6 +124,7 @@ function newTrial() {
             $.each(stimuli, function(key, value) {
                 if(key!='sentences' && key!='word'){sentenceKeys.push(key);}
             });
+            sentenceKeys = shuffle(sentenceKeys); //randomize
             getStimuli.resolve();
         }
     })
