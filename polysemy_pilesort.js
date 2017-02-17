@@ -136,9 +136,8 @@ function newTrial() {
     getStimuli.done(function() {
         //load instruction keywords
     $("#info").html('<b>Instructions: </b>You will see a total of ' +sentenceKeys.length+ ' sentences that include the word <b style="background-color:yellow">' 
-        +wordList[currentIndex-1]+'</b>. Each sentence is represented by a numbered square in the grey canvas below. Drag the squares around in the canvas, such that sentences with similar meanings for "' 
-        +wordList[currentIndex-1]+ '" are grouped closer together. The full content of each sentence will be displayed below the canvas. '
-        + '<p style="text-decoration:underline">Please do not refresh this page until the experiment is finished, make sure your browser window is large enough to accommodate the canvas, and turn off Privacy Badger extension to allow us to save your answers.</p>')
+        +wordList[currentIndex-1]+'</b>. Each sentence is represented by a numbered square in the grey canvas below. The full content of each sentence will be displayed below the canvas. Drag the squares around in the canvas so that: <ul><li><b>Sentences with similar meanings for "' 
+    +wordList[currentIndex-1]+ '" are closest to each other</b></li><li><b> Sentences with the least similar are farthest apart</b></li></ul>'+ 'Do not refresh this page until the HIT is finished, and make sure you can see the whole canvas in your browser.')
 
         dropOneSentence();
     })
@@ -300,8 +299,8 @@ function getSubjectInfo(){
     getLocation.done(function() {
         var checkUser = $.Deferred();
         //TODO: put back user check.
-        //checkIfUserExists(IPkey, IDkey, checkUser);
-        checkUser.resolve();
+        checkIfUserExists(IPkey, IDkey, checkUser);
+        //checkUser.resolve();
         
 
         var jsonData = {userDisplayLanguage: navigator.language,
