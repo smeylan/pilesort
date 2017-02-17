@@ -11,7 +11,7 @@ var trialRef = ref.child("trials");
 var thisUserRef;
 var userID; //unique hash from firebase
 var userIP;
-var workerID=getParamFromURL("workerID"); //amazon worker id
+var workerID=getParamFromURL("expID"); //amazon worker id
 var userExists;
 
 /*************************************
