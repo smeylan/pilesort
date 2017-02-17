@@ -1,7 +1,8 @@
 <!-- For help on using this template, see the blog post: http://mechanicalturk.typepad.com/blog/2014/04/editing-the-survey-link-project-template-in-the-ui.html --><!-- Bootstrap v3.0.3 -->
 <link href="https://s3.amazonaws.com/mturk-public/bs30/css/bootstrap.min.css" rel="stylesheet" />
 <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto&#45;js/3.1.9&#45;1/md5.js"></script> -->
-<script src = "http://www.myersdaily.org/joseph/javascript/md5.js"></script>
+<!-- <script src = "http://www.myersdaily.org/joseph/javascript/md5.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.7.0/js/md5.js"></script>
 <section class="container" id="SurveyLink" style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
 <div class="row col-xs-12 col-md-12"><!-- Instructions -->
 <div class="panel panel-primary">
@@ -19,7 +20,7 @@
 	<tbody>
 		<tr>
 			<td><strong>Survey link:</strong></td>
-			<td><a href="http://www.google.com" id="explink" target="_blank">experiment site</a></td>
+			<td><a id="explink" target="_blank">[accept the HIT to get the survey link]</a></td>
 		</tr>
 		<tr>
 			<td><strong>Provide the survey code here:</strong></td>
@@ -45,9 +46,11 @@ function getParamFromURL( name ){
 }
 ( function(){
     var explink = document.getElementById("explink");
+    if( getParamFromURL("workerId") != ""){
     var hashedID = md5(getParamFromURL("workerId"));
     explink.href = "http://cocosci.dreamhosters.com/webexpt/polysemy/pilesort/polysemy_pilesort.html"+"?expID="+hashedID;
     //console.log( getParamFromURL("workerId") );
+    explink.innerHTML = "Experiment site";}
 
 })();
 </script>
