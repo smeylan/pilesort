@@ -120,7 +120,10 @@ function newTrial() {
         //stimuli.splice(parseInt(snapshot.key())-1, 0, snapshot.val());
 
         if(inputSize > 0  &&  Object.keys(stimuli).length > inputSize ) {
-            sentenceKeys = sList(inputSize, trialSize);
+            //sentenceKeys = sList(inputSize, trialSize);
+            $.each(stimuli, function(key, value) {
+                if(key!='sentences' && key!='word'){sentenceKeys.push(key);}
+            });
             getStimuli.resolve();
         }
     })
@@ -137,13 +140,6 @@ function newTrial() {
         + '<p style="text-decoration:underline">Please do not refresh this page until the experiment is finished, make sure your browser window is large enough to accommodate the canvas, and turn off Privacy Badger extension to allow us to save your answers.</p>')
 
         dropOneSentence();
-        //loadChoices();
-        //if ($("#rainbow > div").length - 1 == sentenceKeys.length) {loadSentences.resolve();}
-        // $("#next").click(function(){
-        //     sentenceIndex += 1;
-        //     dropOneSentence();
-        // })
-
     })
 }
 
@@ -159,7 +155,6 @@ function dropOneSentence(){
     var colorstr = colorlist[sentenceIndex%8];
     var newDivString = ' <div class="draggable" id="';
     var newDiv0 = newDivString.concat (sentenceKeys[sentenceIndex].toString());
-    //var newDiv00 = newDiv0.concat('" style= "background-color:',colorstr,';position:absolute; left:500px"><h4>');//,(window.outerWidth)/2, '"><h4>');
     var newDiv00 = newDiv0.concat('" style= "background-color:',colorstr,';position:absolute; left:',((window.innerWidth)/2)-19, 'px"><h4>');
 
     var newDiv = newDiv00.concat(sentenceIndex+1, "</h4></div>");
@@ -168,7 +163,6 @@ function dropOneSentence(){
     lastClicked = sentenceKeys[sentenceIndex].toString();
 
     $( ".draggable" ).draggable({revert:"invalid"});
-    //$("#label-text" ).text(stimuli[sentenceKeys[sentenceIndex].toString()]["sentence"]);
     $("#label-text" ).html(stimuli[sentenceKeys[sentenceIndex].toString()]);    
     $("#label").css("background-color", colorstr);
 
