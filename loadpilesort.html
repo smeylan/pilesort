@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+	    <title> Polysemy Project </title>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>        
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+        <script src="https://cdn.firebase.com/js/client/2.4.0/firebase.js"></script>
+
+        <meta charset="utf-8">
+    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        
+        <style>        
+            body {
+                padding-top: 30px;
+                text-align: center;
+            }
+
+            .btn-info {
+                white-space: normal;
+            }
+
+
+            .btn-group {
+                text-align: center;
+            }
+            
+
+            .warning{
+                color: red;
+            }
+
+            .start-centered{
+                position:absolute;
+                left:100px;
+                width: 800px;
+            }
+            
+            /* @media (max-width: 760px) { */
+
+
+            #dropzone{
+                 
+                 /* margin: auto; */
+
+                 height: 400px;
+
+                 background-color: #ccc;
+                 border: 4px transparent;
+                 border-radius: 6px;
+                 margin: 10px auto 30px;
+                 /* margin: 0px; */
+                 padding: 10px;
+            }
+
+            .relevantSentence{
+                 height:120px;
+
+
+                 border: 4px transparent;
+                 border-radius: 6px;
+                 margin: 10px auto 10px;
+                 padding: 10px;
+                 background-color: #ccc;  
+            }
+
+            #info{
+                 height:150px;
+            }
+
+            .draggable {
+                border: 3px;
+                border-radius: 4px;
+                border-style: solid;
+                border-color: red;
+                /* padding-bottom:25px; */
+
+                overflow: hidden; 
+                width: 50px; 
+                height: 38px; 
+            }
+
+            h4{
+                padding: 0px;
+            }
+
+            
+        </style>
+	</head>
+
+
+	<body>
+    <div class="container-fluid">
+        
+
+        <div id="experiment" >
+
+        
+        <!-- <div id="rainbow"> -->
+            <div id="dropzone" class="dropzone droppable start-centered" style="background-color: #ccc; top:250px">   </div>
+            <ul id="sentences" class="ui-helper-reset ui-helper-clearfix">
+            </ul>
+        <!-- </div> -->
+
+
+
+	</body>
+
+
+
+<script type="text/javascript">
+    var ref = new Firebase("https://brilliant-heat-3296.firebaseio.com/polysemy_pilesort");
+    var colorlist = ["#C4E17F", "#DB9DBE", "#FECF71", "#F0776C", "#F7FDCA", "#669AE1", "#C49CDE", "#62C2E4"];
+
+    function getParamFromURL( name ){
+	name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+	var regexS = "[\\?&]"+name+"=([^&#]*)";
+	var regex = new RegExp( regexS );
+	var results = regex.exec( window.location.href );
+	if( results == null )
+		return "";
+	else
+		return results[1];
+    }
+
+    function loadsentence(key,loc){
+        var newDivString = ' <div class="draggable" id="';
+        var newDiv = newDivString.concat(key, '" style="position:absolute;',loc,'"><p>',key,'</p></div>');
+        $( "#experiment" ).append(newDiv);
+    }
+    
+////main/////
+    (function(){
+        var trialID = getParamFromURL( "trialID" );
+        var trialRef = ref.child("trials").child(trialID);
+        trialRef.once("value", function(snapshot){
+                var response = snapshot.val()['response'];
+                if(response!=null){
+                    $.each(response, function(key, value) {
+                        loadsentence(key,value);
+                    });
+                }
+                });
+    })();
+//////
+</script>
+
+</html> 
+
+
