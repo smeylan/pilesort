@@ -45,20 +45,26 @@ $(document).ready ( function(){
     }
     //TODO?: add warning when browser window too small?
     
-    //get user info
-    getSubjectInfo();
+    //get user info TODO: turn it back on
+    //getSubjectInfo();
 //
 //         
     //newTrial();
     $("#agree").click(function(){
         $("#consent").addClass("hidden");
-        $("#experiment").removeClass("hidden");
-        newTrial();
+        $("#intro").removeClass("hidden");
+        //newTrial();
     });
 
     $("#decline").click(function(){
         $("#consent").addClass("hidden");
         $("#declinedExperiment").removeClass("hidden");
+    });
+
+    $("#introOK").click(function(){
+        $("#intro").addClass("hidden");
+        $("#experiment").removeClass("hidden");
+        newTrial();
     });
 
     $("#next").click(function(){
@@ -68,8 +74,8 @@ $(document).ready ( function(){
 
 
     $("#submit").click(function() {
-        recordTrial();
-        //newTrial();
+        //TODO: turn recordTrial back on
+        //recordTrial();
         
         if(currentIndex <= totalTrials-1){
             newTrial();
