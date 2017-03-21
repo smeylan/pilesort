@@ -43,10 +43,9 @@ $(document).ready ( function(){
     if(w >= 800) {
         $(".start-entered").css("left", (w-800)/2);
     }
-    //TODO?: add warning when browser window too small?
     
-    //get user info TODO: turn it back on
-    //getSubjectInfo();
+    //get user info 
+    getSubjectInfo();
 //
 //         
     //newTrial();
@@ -74,8 +73,8 @@ $(document).ready ( function(){
 
 
     $("#submit").click(function() {
-        //TODO: turn recordTrial back on
-        //recordTrial();
+        
+        recordTrial();
         
         if(currentIndex <= totalTrials-1){
             newTrial();
@@ -304,7 +303,6 @@ function getSubjectInfo(){
     // Generate a reference to a new location and add some data using push()
     getLocation.done(function() {
         var checkUser = $.Deferred();
-        //TODO: put back user check.
         checkIfUserExists(IPkey, IDkey, checkUser);
         //checkUser.resolve();
         
